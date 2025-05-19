@@ -1,25 +1,24 @@
-let initialValue = 0;
+const display = document.getElementById('display');
+const addBtn = document.getElementById('add-product');
+const removeBtn = document.getElementById('remove-product');
+const clearBtn = document.getElementById('clear');
 
-document.getElementById("display").innerHTML = initialValue;
+addBtn.addEventListener('click', () => {
+  const newProduct = document.createElement('div');
+  newProduct.className = 'product-item';
+  newProduct.innerHTML = `
+    <label>Description: <input type="text" placeholder="Enter product description..." /></label>
+    <br><br>
+  `;
+  display.appendChild(newProduct);
+});
 
-function incrementValue() {
-  initialValue = initialValue + 1;
-  document.getElementById("display").innerHTML = initialValue;
-}
+removeBtn.addEventListener('click', () => {
+  if (display.lastChild) {
+    display.removeChild(display.lastChild);
+  }
+});
 
-function decrementValue() {
-  initialValue = initialValue - 1;
-  document.getElementById("display").innerHTML = initialValue;
-}
-function clearValue() {
-    initialValue = 0;
-    document.getElementById("display").innerHTML = initialValue;
-}
-const incrementButton = document.getElementById('Add Product');
-incrementButton.addEventListener('click', incrementValue);
-
-const decrementButton = document.getElementById('Remove Product');
-decrementButton.addEventListener('click', decrementValue);
-
-const clearButton = document.getElementById('Clear');
-clearButton.addEventListener('click', clearValue);
+clearBtn.addEventListener('click', () => {
+  display.innerHTML = '';
+});
